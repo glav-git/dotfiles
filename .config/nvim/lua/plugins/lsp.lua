@@ -23,6 +23,8 @@ return {
                 "vtsls",
 				-- "quick_lint_js",
                 "ruff",
+				"docker_compose_language_service",
+				"mypy",
 				"pyright",
 				"html",
 				"bashls",
@@ -89,12 +91,22 @@ return {
 		})
 
 		local cmp = require("cmp")
+		local luasnip = require("luasnip")
+		vim.filetype.add({
+			pattern = {
+				[".*compose.yaml"] = "yaml.docker-compose",
+				[".*compose.yml"] = "yaml.docker-compose",
+			},
+		})
+		-- luasnip.config.set_config{
+		--     updateevents = "TextChanged,TextChangedI",
+		-- }
 		-- local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					require("luasnip").lsp_expand(args.body)
+					luasnip.lsp_expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({

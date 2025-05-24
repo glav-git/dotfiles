@@ -125,14 +125,29 @@ export EDITOR=nvim
 
 # my sugars
 eval "$(starship init bash)"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+
+gender=$(echo '--lesbian
+--gay
+--bisexual
+--transgender
+--pansexual
+--gender-queer
+--mlm
+--polysexual
+--demiboy
+--demigirl
+--bigender
+--abrosexual
+--trigender
+' | shuf -n 1)
+saying="/home/sub-gig-dick/sayings/$(ls /home/sub-gig-dick/sayings | shuf -n 1)"
+max_line_width=$(($(awk 'length > l {l=length;line=$0} END {print length}' $saying) + 2))
+cat $saying | cowthink -W $max_line_width -f sodomized-sheep | /home/sub-gig-dick/.local/bin/gay $gender
 
 alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
