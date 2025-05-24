@@ -1,0 +1,32 @@
+session_name: offermanager
+start_directory: ~/w/offer_manager
+windows:
+  - window_name: main
+    layout: tiled
+    focus: true
+    panes:
+      # frontend
+      - shell_command:
+          - nvm use stable
+          - npm run dev
+        start_directory: ~/w/offer_manager/mantine-offermanager-dashboard
+
+      # frontend git
+      - shell_command:
+          - nvm use stable
+          - git status
+        start_directory: ~/w/offer_manager/mantine-offermanager-dashboard
+
+      # django process
+      - shell_command:
+          - . venv/bin/activate
+          - clear
+          - docker compose up
+        start_directory: ~/w/offer_manager/offermanger
+
+      # django git
+      - shell_command:
+          - . venv/bin/activate
+          - clear
+          - git status
+        start_directory: ~/w/offer_manager/offermanger
