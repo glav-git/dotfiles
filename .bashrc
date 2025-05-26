@@ -144,8 +144,7 @@ gender=$(echo '--lesbian
 --demigirl
 --bigender
 --abrosexual
---trigender
-' | shuf -n 1)
+--trigender' | shuf -n 1)
 saying="/home/sub-gig-dick/sayings/$(ls /home/sub-gig-dick/sayings | shuf -n 1)"
 max_line_width=$(($(awk 'length > l {l=length;line=$0} END {print length}' $saying) + 2))
 cat $saying | cowthink -W $max_line_width -f sodomized-sheep | /home/sub-gig-dick/.local/bin/gay $gender
