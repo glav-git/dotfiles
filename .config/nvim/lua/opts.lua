@@ -15,18 +15,32 @@ vim.opt.colorcolumn = "80"
 -- into Windows/System32 folder, from where it should be automatically available
 -- in wsl PATH. Link to repo: https://github.com/equalsraf/win32yank
 vim.g.clipboard = {
-  name = 'WslClipboard',
-  copy = {
-    ['+'] = 'win32yank.exe -i',
-    ['*'] = 'win32yank.exe -i',
-  },
-  paste = {
-    ['+'] = 'win32yank.exe -o',
-    ['*'] = 'win32yank.exe -o',
-  },
+	name = "WslClipboard",
+	copy = {
+		["+"] = "win32yank.exe -i",
+		["*"] = "win32yank.exe -i",
+	},
+	paste = {
+		["+"] = "win32yank.exe -o",
+		["*"] = "win32yank.exe -o",
+	},
 }
 
--- g:netrw_liststyle = 'long'
-vim.g.netrw_liststyle = 1
+vim.g.netrw_liststyle = 1 -- long style
 vim.g.netrw_sizestyle = "h"
 vim.g.netrw_banner = 0
+
+-- on netrw buffer first open - check liststyle and if it matches 1 - set custom sort sequence
+local netrw_au_group = vim.api.nvim_create_augroup("MaNetrwAUGroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	group = netrw_au_group,
+	pattern = "netrw",
+	once = true,
+	callback = function()
+		if vim.g.netrw_liststyle == 1 then
+			vim.schedule(function()
+				vim.g.netrw_sort_sequence = vim.g.netrw_sort_sequence:gsub("%$", "\\s\\s\\+\\d")
+			end)
+		end
+	end,
+})
