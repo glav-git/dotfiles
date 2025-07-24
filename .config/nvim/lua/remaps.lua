@@ -9,8 +9,8 @@ end)
 vim.keymap.set("n", "<leader>vs", "<CMD>vert split<CR>")
 vim.keymap.set("n", "<leader>hs", "<CMD>horizontal split<CR>")
 
-local ma_au_group = vim.api.nvim_create_augroup('MaAUGroup', {})
-local yank_group = vim.api.nvim_create_augroup('YankGroup', {})
+local ma_au_group = vim.api.nvim_create_augroup('MaAUGroup', { clear = true })
+local yank_group = vim.api.nvim_create_augroup('YankGroup', { clear = true })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     group = yank_group,
