@@ -38,9 +38,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	once = true,
 	callback = function()
 		if vim.g.netrw_liststyle == 1 then
-			vim.schedule(function()
-				vim.g.netrw_sort_sequence = vim.g.netrw_sort_sequence:gsub("%$", "\\s\\s\\+\\d")
-			end)
+			vim.g.netrw_sort_sequence = vim.g.netrw_sort_sequence:gsub("%$", "\\s\\s\\+\\d")
 		end
 	end,
 })
