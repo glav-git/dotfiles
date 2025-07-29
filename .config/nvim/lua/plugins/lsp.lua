@@ -24,7 +24,6 @@ return {
 				-- "quick_lint_js",
                 "ruff",
 				"docker_compose_language_service",
-				"mypy",
 				"pyright",
 				"html",
 				"bashls",
