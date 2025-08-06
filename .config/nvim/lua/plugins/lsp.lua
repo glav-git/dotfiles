@@ -20,9 +20,9 @@ return {
 			ensure_installed = {
 				"gopls",
 				"lua_ls",
-                "vtsls",
+				"vtsls",
 				-- "quick_lint_js",
-                "ruff",
+				"ruff",
 				"docker_compose_language_service",
 				"pyright",
 				"html",
@@ -40,8 +40,8 @@ return {
 					lspconfig.lua_ls.setup({
 						settings = {
 							Lua = {
-								diagnostics = {
-									globals = { "vim" },
+								workspace = {
+									library = vim.api.nvim_get_runtime_file("", true),
 								},
 							},
 						},
