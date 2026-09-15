@@ -3,7 +3,14 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/ ~/w ~/w/crm ~/w/ban ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    # TODO: move dirs to template
+    dirs=(
+        ~/
+        ~/.config
+        ~/w
+        ~/personal
+    )
+    selected=$(find "${dirs[@]}" -mindepth 1 -maxdepth 2 \( -name '.*' -o -name node_modules -o -name __pycache__ \) -prune -o -type d -print | sort -u | fzf)
 fi
 
 if [[ -z $selected ]]; then
