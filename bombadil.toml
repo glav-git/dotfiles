@@ -1,0 +1,12 @@
+dotfiles_dir = ".dotfiles"
+
+[settings]
+vars = []
+
+[settings.dots]
+
+cowsay = { source = "cowsay", target = ".config/cowsay" }
+tmux = { source = "tmux", target = ".config/tmux" }
+bashrc = { source = ".bashrc", target = ".bashrc" }
+bash_profile = { source = ".bash_profile", target = ".bash_profile" }
+nvim = { source = "nvim", target = ".config/nvim" }

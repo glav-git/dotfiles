@@ -1,0 +1,30 @@
+return {
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	version = false,
+	config = function()
+		require("nvim-treesitter").install({
+            "ecma",
+            "bash",
+            "css",
+            "dockerfile",
+            "gitcommit",
+			"go",
+            "html",
+            "hyprlang",
+			"javascript",
+            "json",
+			"markdown",
+            "php",
+            "prisma",
+            "proto",
+			"python",
+            "readline",
+            "toml",
+            "tsx",
+            "typescript",
+            "xcompose",
+            "yaml",
+		})
+	end,
+}
