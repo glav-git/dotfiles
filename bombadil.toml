@@ -7,6 +7,7 @@ vars = []
 
 cowsay = { source = "cowsay", target = ".config/cowsay" }
 tmux = { source = "tmux", target = ".config/tmux" }
+tmux_sessionizer = { source = "bin/tmux-sessionizer.sh", target = ".local/bin/ts" }
 bashrc = { source = ".bashrc", target = ".bashrc" }
 bash_profile = { source = ".bash_profile", target = ".bash_profile" }
 nvim = { source = "nvim", target = ".config/nvim" }
