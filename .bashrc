@@ -65,13 +65,7 @@ gender=$(echo '--lesbian
 --abrosexual
 --trigender' | shuf -n 1)
 saying=$(find $HOME/.config/cowsay/sayings -type f -name '[^_]*.txt' | shuf -n 1)
-# {%- if "wsl" in profiles %}
-max_line_width=$(($(wc -L $saying | cut -d ' ' -f1) + 1))
-cat $saying | cowthink  -f sodomized-sheep -W $max_line_width | gay $gender
-# {%- else %}
-max_line_width=$(($(wc -L $saying | cut -d ' ' -f1) + 1))
-cat $saying | cowthink  -f sodomized-sheep -W $max_line_width -n | gay $gender
-# {%- endif %}
+cat $saying | cowthink  -f sodomized-sheep -n | gay $gender
 
 if [ -d "~/.local/share/omarchy" ]; then
     # All the default Omarchy aliases and functions
