@@ -1,6 +1,29 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+export COWPATH="$HOME/.config/cowsay"
+export DISPLAY=:0;
+export GOPATH=$HOME/go
+export EDITOR="nvim"
+export SUDO_EDITOR="$EDITOR"
+export XKB_DEFAULT_OPTIONS=caps:escape
+export FLYCTL_INSTALL="$HOME/.fly"
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+append_to_a_path() { if [ -d "$1" ] ; then PATH="$PATH:$1"; fi }
+prepend_to_a_path() { if [ -d "$1" ] ; then PATH="$1:$PATH"; fi }
+prepend_to_a_path "/home/pikarchu/.opencode/bin"
+prepend_to_a_path "$HOME/.local/bin"
+prepend_to_a_path "/usr/local/go/bin"
+prepend_to_a_path "$GOPATH/bin"
+append_to_a_path "$FLYCTL_INSTALL/bin"
+append_to_a_path "/home/pikarchu/.local/share/nvim/mason/bin/"
+unset -f append_to_a_path
+unset -f prepend_to_a_path
+
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -41,10 +64,14 @@ gender=$(echo '--lesbian
 --bigender
 --abrosexual
 --trigender' | shuf -n 1)
-saying=$(find $HOME/.config/cowsay/sayings -type f -name *.txt | shuf -n 1)
-max_line_width=$(($(awk 'length > l {l=length;line=$0} END {print length}' $saying) + 100))
-# TODO: Debug bad max_line_width on linux
-# cat $saying | cowthink -W $max_line_width -f sodomized-sheep | gay $gender
+saying=$(find $HOME/.config/cowsay/sayings -type f -name '[^_]*.txt' | shuf -n 1)
+# {%- if "wsl" in profiles %}
+max_line_width=$(($(wc -L $saying | cut -d ' ' -f1) + 1))
+cat $saying | cowthink  -f sodomized-sheep -W $max_line_width | gay $gender
+# {%- else %}
+max_line_width=$(($(wc -L $saying | cut -d ' ' -f1) + 1))
+cat $saying | cowthink  -f sodomized-sheep -W $max_line_width -n | gay $gender
+# {%- endif %}
 
 if [ -d "~/.local/share/omarchy" ]; then
     # All the default Omarchy aliases and functions
@@ -58,28 +85,6 @@ if [ -d "~/.local/share/omarchy" ]; then
     source ~/.local/share/omarchy/default/bash/init
     [[ $- == *i* ]] && bind -f ~/.local/share/omarchy/default/bash/inputrc
 fi
-
-export COWPATH="$HOME/.config/cowsay"
-export DISPLAY=:0;
-export GOPATH=$HOME/go
-export EDITOR="nvim"
-export SUDO_EDITOR="$EDITOR"
-export XKB_DEFAULT_OPTIONS=caps:escape
-export FLYCTL_INSTALL="$HOME/.fly"
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-append_to_a_path() { if [ -d "$1" ] ; then PATH="$PATH:$1"; fi }
-prepend_to_a_path() { if [ -d "$1" ] ; then PATH="$1:$PATH"; fi }
-prepend_to_a_path "/home/pikarchu/.opencode/bin"
-prepend_to_a_path "$HOME/.local/bin"
-prepend_to_a_path "/usr/local/go/bin"
-prepend_to_a_path "$GOPATH/bin"
-append_to_a_path "$FLYCTL_INSTALL/bin"
-append_to_a_path "/home/pikarchu/.local/share/nvim/mason/bin/"
-unset -f append_to_a_path
-unset -f prepend_to_a_path
 
 alias n="nvim"
 alias ll="ls -lah"
