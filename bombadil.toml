@@ -3,6 +3,8 @@ dotfiles_dir = ".dotfiles"
 [settings]
 vars = []
 
+[profiles.wsl]
+
 [settings.dots]
 
 cowsay = { source = "cowsay", target = ".config/cowsay" }
