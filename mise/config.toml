@@ -1,0 +1,9 @@
+[tools]
+node = 'lts'
+npm = 'latest'
+uv = 'latest'
+go = 'latest'
+claude-code = 'latest'
+rust = 'latest'
+
+# buf = 'latest'
