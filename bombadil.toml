@@ -15,3 +15,4 @@ bash_profile = { source = ".bash_profile", target = ".bash_profile" }
 gitconfig = { source = ".gitconfig", target = ".gitconfig" }
 nvim = { source = "nvim", target = ".config/nvim" }
 mise = { source = "mise", target = ".config/mise" }
+noctalia = { source = "noctalia", target = ".config/noctalia" }
