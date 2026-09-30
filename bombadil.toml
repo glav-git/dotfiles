@@ -12,5 +12,6 @@ tmux = { source = "tmux", target = ".config/tmux" }
 tmux_sessionizer = { source = "bin/tmux-sessionizer.sh", target = ".local/bin/ts" }
 bashrc = { source = ".bashrc", target = ".bashrc" }
 bash_profile = { source = ".bash_profile", target = ".bash_profile" }
+gitconfig = { source = ".gitconfig", target = ".gitconfig" }
 nvim = { source = "nvim", target = ".config/nvim" }
 mise = { source = "mise", target = ".config/mise" }
