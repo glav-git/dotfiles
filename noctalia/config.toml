@@ -13,15 +13,16 @@ radius_bottom_left = 0
 radius_bottom_right = 0
 radius_top_left = 0
 radius_top_right = 0
-scale = 1.10
-thickness = 30
+scale = 1
+thickness = 28
+background_opacity = 0.7
 
     [[bar.default.capsule_group]]
     border = ""
     fill = "on_secondary"
     id = "g1"
     members = [ "temp", "sysmon_2", "sysmon_3" ]
-    opacity = 1.0
+    opacity = 0
     padding = 6.0
 
 [shell]
