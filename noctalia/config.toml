@@ -110,6 +110,11 @@ wallpaper_scheme = "m3-tonal-spot"
 [theme.templates]
 builtin_ids = [ "btop", "gtk3", "gtk4", "kcolorscheme", "kitty", "qt", "alacritty" ]
 
+[theme.templates.user.brave-origin]
+input_path  = "~/.config/noctalia/templates/brave-policy.json"
+output_path = "/etc/brave/policies/managed/noctalia-theme.json"
+post_hook = 'pgrep -f brave-origin && brave-origin --refresh-platform-policy --no-startup-window'
+
 [widget.clock]
 color = "secondary"
 # format = "{:%H:%M %A %d-%m-%y}"
