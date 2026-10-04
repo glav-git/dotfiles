@@ -1,5 +1,10 @@
 [accessibility]
-ui_scale = 1.20
+ui_scale = 1.1
+[hooks]
+colors_changed = [
+    "copyq exit || true; copyq --start-server",
+    """pkill Telegram && hyprctl dispatch 'hl.dsp.exec_cmd("uwsm app -- Telegram", {no_initial_focus=true})'""",
+]
 
 [plugins]
 enabled = ["pphaver/mega_cmd_sync_status"]

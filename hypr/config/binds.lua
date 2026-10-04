@@ -104,7 +104,7 @@ hl.bind(mainMod .. " + Print",      hl.dsp.exec_cmd(noctMsg .. "screenshot-fulls
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(noctMsg .. "panel-toggle wallpaper"))
 
 -- Clipboard
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(noctMsg .. "panel-toggle clipboard"))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(launchPrefix .. "copyq show"))
 
 -- Notifications
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(noctMsg .. "panel-toggle control-center notifications"))

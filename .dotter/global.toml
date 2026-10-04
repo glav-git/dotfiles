@@ -8,12 +8,15 @@ depends = []
 ".bashrc" = { target = "~/.bashrc", type = "template" }
 ".bash_profile" = "~/.bash_profile"
 ".gitconfig" = "~/.gitconfig"
+"copyq.conf" = "~/.config/copyq/copyq.conf"
 cowsay = "~/.config/cowsay"
 tmux = "~/.config/tmux"
 hypr = "~/.config/hypr"
-nvim = { target = "~/.config/nvim", type = "template" }
 mise = "~/.config/mise"
 noctalia = "~/.config/noctalia"
+# I am shocked that this worked exactly how I wanted it to lmao
+nvim = "~/.config/nvim"
+"nvim/lua/opts.lua" = { target = "~/.config/nvim/lua/opts.lua", type = "template" }
 
 [default.variables]
 

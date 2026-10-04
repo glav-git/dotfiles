@@ -3,6 +3,14 @@
 -- Generic floating position
 hl.window_rule({ match = { float = true }, persistent_size = true })
 
+hl.window_rule({
+    match             = { class = "com.github.hluk.copyq" },
+    float             = true,
+    size              = { "max(monitor_w, monitor_h)*0.5", "min(monitor_w, monitor_h)*0.5" },
+})
+
+hl.window_rule({ match = { class = "org.telegram.desktop" }, workspace = 3, })
+
 -- Picture-in-Picture
 hl.window_rule({
     match             = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
