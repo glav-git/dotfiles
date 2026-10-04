@@ -84,24 +84,21 @@ return {
 						cmd = local_cmd
 					end
 				end
-				return vim.lsp.rpc.start(
-					{
-						"systemd-run",
-						"--user",
-						"--scope",
-						"-p",
-						"CPUQuota=600%",
-						"-p",
-						"MemoryMax=16G",
-						"-p",
-						"MemorySwapMax=infinity",
-						"--",
-						cmd,
-						"--lsp",
-						"--stdio",
-					},
-					dispatchers
-				)
+				return vim.lsp.rpc.start({
+					"systemd-run",
+					"--user",
+					"--scope",
+					"-p",
+					"CPUQuota=600%",
+					"-p",
+					"MemoryMax=16G",
+					"-p",
+					"MemorySwapMax=infinity",
+					"--",
+					cmd,
+					"--lsp",
+					"--stdio",
+				}, dispatchers)
 				-- return vim.lsp.rpc.start({ "cpulimit", "-l", "600", "--", cmd, "--lsp", "--stdio" }, dispatchers)
 				-- return vim.lsp.rpc.start({"/home/pikarchu/.local/bin/tsgopidoraslsp"}, dispatchers)
 			end,
@@ -116,6 +113,18 @@ return {
 				},
 			},
 		})
+
+		local noctaliaPluginsRuntimeApiDefinitions =
+			vim.fs.joinpath(vim.fn.expand("$HOME"), "opt", "noctalia-official-plugins", "noctalia.d.luau")
+		if vim.uv.fs_stat(noctaliaPluginsRuntimeApiDefinitions) then
+			vim.lsp.config("luau_lsp", {
+				cmd = {
+					"luau-lsp",
+					"lsp",
+					"--definitions:@noctalia=" .. noctaliaPluginsRuntimeApiDefinitions,
+				},
+			})
+		end
 
 		vim.lsp.enable("htmx", false)
 

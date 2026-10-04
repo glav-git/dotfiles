@@ -1,10 +1,20 @@
 [accessibility]
 ui_scale = 1.20
 
+[plugins]
+enabled = ["pphaver/mega_cmd_sync_status"]
+
+[[plugins.source]]
+name     = "local-custom-plugins"
+kind     = "path"
+location = "~/.config/noctalia/custom_plugins"
+enabled  = true
+
 [bar.default]
-start = [ "workspaces" ]
-center = [ "clock", "spacer_1",  ]
-end = [ "media", "spacer_1", "tray", "notifications","group:g1" ]
+shadow = false
+start = [ "workspaces"]
+center = [ "clock" ]
+end = [ "media", "spacer_1", "pencil", "mega", "tray", "notifications", "group:g1" ]
 # "network", "volume", "launcher", "session"
 concave_edge_corners = true
 margin_edge = 0
@@ -131,3 +141,11 @@ type = "sysmon"
 style = "minimal"
 occupied_color = "outline"
 show_labels = true
+
+[idle.behavior.custom]
+timeout = 600
+action = "command"
+command = "noctalia msg session lock"
+
+[widget.mega]
+type = "pphaver/mega_cmd_sync_status:mega_cmd_sync_status"

@@ -1,0 +1,9 @@
+id         = "pphaver/mega_cmd_sync_status"
+name       = "MEGAcmd sync status"
+version    = "0.0.1"
+plugin_api = 3
+author     = "pphaver"
+
+[[widget]]
+id    = "mega_cmd_sync_status"
+entry = "widget.luau"
