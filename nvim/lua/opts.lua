@@ -26,7 +26,7 @@ vim.o.imsearch = 0
 vim.opt.smartindent = true
 vim.opt.colorcolumn = "80"
 
--- {%- if "wsl" in profiles %} wsl clipboard provider
+-- {{#if wsl}} wsl clipboard provider
 -- win32yank.exe not native but works great with cirylic symbols.
 -- You can install it on windows just downloading a release and copying .exe
 -- into Windows/System32 folder, from where it should be automatically available
@@ -42,7 +42,7 @@ vim.g.clipboard = {
 		["*"] = "win32yank.exe -o",
 	},
 }
--- {%- endif %}
+-- {{/if}}
 
 vim.g.netrw_liststyle = 1 -- long style
 vim.g.netrw_sizestyle = "h"

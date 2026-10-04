@@ -1,0 +1,21 @@
+[helpers]
+
+[default]
+depends = []
+
+[default.files]
+"bin/tmux-sessionizer.sh" = "~/.local/bin/ts"
+".bashrc" = { target = "~/.bashrc", type = "template" }
+".bash_profile" = "~/.bash_profile"
+".gitconfig" = "~/.gitconfig"
+cowsay = "~/.config/cowsay"
+tmux = "~/.config/tmux"
+hypr = "~/.config/hypr"
+nvim = { target = "~/.config/nvim", type = "template" }
+mise = "~/.config/mise"
+noctalia = "~/.config/noctalia"
+
+[default.variables]
+
+[settings]
+default_target_type = "symbolic"

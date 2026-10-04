@@ -39,7 +39,7 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# {%- if "wsl" in profiles %} enable programmable completion features (you don't need to enable
+# {{#if wsl}} enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
@@ -49,7 +49,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-# {%- endif %}
+# {{/if}}
 
 gender=$(echo '--lesbian
 --gay
@@ -64,7 +64,7 @@ gender=$(echo '--lesbian
 --bigender
 --abrosexual
 --trigender' | shuf -n 1)
-saying=$(find $HOME/.config/cowsay/sayings -type f -name '[^_]*.txt' | shuf -n 1)
+saying=$(find $HOME/.config/cowsay/sayings -name '[^_]*.txt' | shuf -n 1)
 cat $saying | cowthink  -f sodomized-sheep -n | gay $gender
 
 if [ -d "~/.local/share/omarchy" ]; then
