@@ -2,13 +2,12 @@
 (
 set -euo pipefail
 
-msg() { printf '\n\033[1;36m==> %s\033[0m\n' "$*"; }
+BW_PORT=8087
+BW_HOST="127.0.0.1"
+BW_BASE="http://$BW_HOST:$BW_PORT"
+BW_LOG=/tmp/bw-serve.log
 
-deploy_bw_ssh_key() {
-    install -d -m 700 ~/.ssh
-    install <( bw get item "$1" | jq -re '.sshKey.publicKey'  ) -m 600 "$HOME/.ssh/$2.pub"
-    install <( bw get item "$1" | jq -re '.sshKey.privateKey' ) -m 600 "$HOME/.ssh/$2"
-}
+msg() { printf '\n\033[1;36m==> %s\033[0m\n' "$*"; }
 
 ensure_pkgs() {
     local missing
@@ -53,6 +52,19 @@ get_bw_session() {
     return 1
 }
 
+bw_cleanup() {
+    kill "$BW_PID" 2>/dev/null || true
+    wait "$BW_PID" 2>/dev/null || true
+}
+
+bw_get() { curl "$BW_BASE/object/$1/$2" 2>/dev/null | jq -re .data$([[ "$1" != item ]] && echo .data); }
+
+deploy_bw_ssh_key() {
+    install -d -m 700 ~/.ssh
+    install <( bw_get item "$1" | jq -re '.sshKey.publicKey'  ) -m 600 "$HOME/.ssh/$2.pub"
+    install <( bw_get item "$1" | jq -re '.sshKey.privateKey' ) -m 600 "$HOME/.ssh/$2"
+}
+
 ensure_mega_sync() {
     mkdir -p "$1"
     mega-ls "$2" >/dev/null 2>&1 || mega-mkdir -p "$2"
@@ -82,6 +94,7 @@ fi
 # bw pass
 prompt_for_bw_password
 
+time {
 mkdir -p "${email_cache%/*}"
 (umask 077; printf '%s\n' "$BW_EMAIL" > "$email_cache")
 
@@ -110,17 +123,31 @@ if [[ $(bw config server) != 'https://pass.big-booty.pics' ]]; then
 fi
 
 get_bw_session || { echo "Could not get a Bitwarden session, giving up." >&2; exit 1; }
-# bw status
-bw sync >/dev/null
+
+trap bw_cleanup EXIT
+# just rout INT/TERM through EXIT so that bw_cleanup trap fires
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+bw serve --hostname "$BW_HOST" --port "$BW_PORT" >"$BW_LOG" 2>&1 &
+BW_PID=$!
+
+for _ in $(seq 1 50); do
+    curl -fsS "$BW_BASE/status" >/dev/null 2>&1 && break
+    kill -0 "$BW_PID" 2>/dev/null || {
+        echo "bw serve failed to start:" >&2; cat "$BW_LOG" >&2; exit 1; }
+    sleep 0.2
+done
+echo 'bw sync resposne:' $(curl -fsSX POST "$BW_BASE/sync")
 msg 'bw: synced';
 
 deploy_bw_ssh_key 'ssh-rsa' 'id_rsa';
 deploy_bw_ssh_key 'ssh-ed'  'id_ed25519';
 msg 'bw: ssh keys deplyed';
 
-bw get username gpg | base64 -d | gpg --import --batch;
-bw get password gpg | base64 -d | gpg --import --batch;
-bw get item gpg | jq -re '.fields[0].value' | base64 -d | gpg --import-ownertrust --batch;
+bw_get username gpg | base64 -d | gpg --import --batch;
+bw_get password gpg | base64 -d | gpg --import --batch;
+bw_get item gpg | jq -re '.fields[0].value' | base64 -d | gpg --import-ownertrust --batch;
 msg 'bw: gpg imported';
 
 
@@ -172,7 +199,7 @@ sudo chown "$USER:root" "$BRAVE_POLICY_FILE"
 sudo chmod 644 "$BRAVE_POLICY_FILE"
 
 if ! mega-whoami &>/dev/null; then
-    mega-login --auth-code="$(bw get totp mega.nz)" "$(bw get username mega.nz)" "$(bw get password mega.nz)"
+    mega-login --auth-code="$(bw_get totp mega.nz)" "$(bw_get username mega.nz)" "$(bw_get password mega.nz)"
 fi
 msg "mega: $(mega-whoami | head -n1)"
 
@@ -200,4 +227,5 @@ copyq exit || true; uwsm app -- copyq --start-server &
 # cleanup
 ###############################################################################
 rm -r "$email_cache"
+}
 )
