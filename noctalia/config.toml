@@ -108,7 +108,7 @@ source = "wallpaper"
 wallpaper_scheme = "m3-tonal-spot"
 
 [theme.templates]
-builtin_ids = [ "btop", "gtk3", "gtk4", "kcolorscheme", "kitty", "qt", "alacritty" ]
+builtin_ids = [ "btop", "gtk3", "gtk4", "kcolorscheme", "kitty", "qt", "alacritty", "hyprland", "starship" ]
 
 [theme.templates.user.brave-origin]
 input_path  = "~/.config/noctalia/templates/brave-policy.json"
