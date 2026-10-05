@@ -6,6 +6,7 @@ hl.window_rule({ match = { float = true }, persistent_size = true })
 hl.window_rule({
 	match = { class = "com.github.hluk.copyq" },
 	float = true,
+	stay_focused = true,
 	size = { "max(monitor_w, monitor_h)*0.5", "min(monitor_w, monitor_h)*0.5" },
 })
 
@@ -108,8 +109,9 @@ hl.window_rule({
 
 -- Opacity Overrides
 local terminals = "^(kitty|ghostty|[Kk]onsole|Alacritty|gnome-terminal|xfce[0-9]?-terminal)$"
+local browsers = "^(firefox|zen|brave-origin)$"
 
-hl.window_rule({ match = { class = "^(firefox|zen|brave-origin)$" }, opacity = "1.0 override" })
+hl.window_rule({ match = { class = browsers }, opacity = "1.0 override" })
 hl.window_rule({ match = { class = terminals }, opacity = "1.0 override" }) -- Override opacity in favor of terminal settings for opacity. If your terminal doesn't support transparency, you can remove this rule.
 hl.window_rule({
 	match = { class = "^(mpv|org.kde.haruna|.*plex.*|org\\.kde\\.gwenview|.*vlc.*)$" },
@@ -161,6 +163,12 @@ hl.window_rule({
 		pin = false,
 	},
 	no_focus = true,
+})
+
+hl.window_rule({
+	name = "browsers focus",
+	match = { class = browsers },
+	focus_on_activate = true,
 })
 
 -- Noctalia layer rule
