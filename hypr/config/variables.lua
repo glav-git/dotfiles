@@ -1,10 +1,10 @@
 -- Hyprland default apps
 
-TERMINAL     = "kitty"
+TERMINAL = "kitty"
 FILE_MANAGER = "dolphin"
-BROWSER      = "brave-origin"
-EDITOR       = "gnome-text-editor --new-window"
-CALCULATOR   = "gnome-calculator"
+BROWSER = "brave-origin"
+EDITOR = "gnome-text-editor --new-window"
+CALCULATOR = "gnome-calculator"
 
 -- Monitors
 MONITOR1 = ""
