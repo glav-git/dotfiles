@@ -36,11 +36,13 @@ hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "d" }))
 for i = 1, NUM_WPM do
 	hl.bind(mainMod .. " + SHIFT + " .. digitCode(i % 10), hl.dsp.window.move({ workspace = i }))
 end
+hl.bind(mainMod .. " + SHIFT + G", hl.dsp.window.move({ workspace = "name:gaming" }))
 
 -- Focus on workspace number
 for i = 1, NUM_WPM do
 	hl.bind(mainMod .. " + " .. digitCode(i % 10), hl.dsp.focus({ workspace = i }))
 end
+hl.bind(mainMod .. "+ G", hl.dsp.focus({ workspace = "name:gaming" }))
 
 -- Move to adjacent workspaces and next empty on a given monitor
 hl.bind(mainMod .. " + CONTROL + Right", hl.dsp.focus({ workspace = "m+1" }))
