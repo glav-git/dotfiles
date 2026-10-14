@@ -114,7 +114,6 @@ fi
 ###############################################################################
 # bw setup & secrets deploys
 ###############################################################################
-# TODO: consider speeding up bw parts with spinning up bw serve
 ensure_pkgs bitwarden-cli jq
 
 if [[ $(bw config server) != 'https://pass.big-booty.pics' ]]; then
