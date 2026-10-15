@@ -103,8 +103,10 @@ mkdir -p ~/Pictures/wallpapers ~/Videos ~/Documents ~/Music
 
 # ensure yay
 if ! command -v yay >/dev/null 2>&1; then
-    [[ -d /tmp/yay/.git ]] || git clone https://aur.archlinux.org/yay.git /tmp/yay
-    cd /tmp/yay && makepkg -si --noconfirm && cd -
+    [[ -d /tmp/yay/.git ]] || git clone https://aur.archlinux.org/yay-bin.git /tmp/yay
+    (cd /tmp/yay && makepkg)
+    sudo pacman --noconfirm -U /tmp/yay/yay-bin*.pkg.tar.zst
+    rm -rf /tmp/yay
     msg 'yay: installed'
 else
     msg 'yay: already installed'
