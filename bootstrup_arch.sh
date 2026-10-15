@@ -104,7 +104,7 @@ mkdir -p ~/Pictures/wallpapers ~/Videos ~/Documents ~/Music
 # ensure yay
 if ! command -v yay >/dev/null 2>&1; then
     [[ -d /tmp/yay/.git ]] || git clone https://aur.archlinux.org/yay.git /tmp/yay
-    ( cd /tmp/yay && makepkg -si )
+    cd /tmp/yay && makepkg -si --noconfirm && cd -
     msg 'yay: installed'
 else
     msg 'yay: already installed'
