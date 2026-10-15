@@ -5,6 +5,7 @@ uv = 'latest'
 go = 'latest'
 claude-code = 'latest'
 rust = 'latest'
-php = 'latest'
+# php = 'latest'
+golangci-lint = 'latest'
 
 # buf = 'latest'
