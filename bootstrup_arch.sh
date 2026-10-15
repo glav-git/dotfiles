@@ -161,7 +161,7 @@ PKGS_BASE=(
     ffmpeg vlc imagemagick
 
     # AUR stuff
-    megacmd hyprqt6engine dotter-rs
+    megacmd hyprqt6engine dotter-rs-bin
 )
 ensure_pkgs "${PKGS_BASE[@]}"
 msg 'yay: base packages installed'
