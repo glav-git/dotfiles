@@ -154,7 +154,7 @@ msg 'bw: gpg imported';
 # packages & dots installation
 ###############################################################################
 PKGS_BASE=(
-    base-devel starship mise cowsay fzf
+    base-devel starship mise uv cowsay fzf
     docker docker-buildx docker-compose
     tmux nvim tree-sitter-cli obs-studio
     telegram-desktop brave-origin-bin copyq

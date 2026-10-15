@@ -1,11 +1,7 @@
 [tools]
 node = 'lts'
 npm = 'latest'
-uv = 'latest'
 go = 'latest'
 claude-code = 'latest'
-rust = 'latest'
-# php = 'latest'
 golangci-lint = 'latest'
-
 # buf = 'latest'
