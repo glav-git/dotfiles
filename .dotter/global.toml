@@ -4,7 +4,14 @@
 depends = []
 
 [default.files]
+"bin/mp3_from_mp4.sh" = "~/.local/bin/mp3_from_mp4"
+"bin/mp4_to_gif.sh" = "~/.local/bin/mp4_to_gif"
 "bin/tmux-sessionizer.sh" = "~/.local/bin/ts"
+"bin/webm_to_webp.sh" = "~/.local/bin/webm_to_webp"
+"bin/webp_to_gif.sh" = "~/.local/bin/webp_to_gif"
+"bin/yt_download.sh" = "~/.local/bin/yt_download"
+"bin/yt_fragment_download.sh" = "~/.local/bin/yt_fragment_download"
+"bin/ytm-download.sh" = "~/.local/bin/ytm-download"
 ".bashrc" = { target = "~/.bashrc", type = "template" }
 ".bash_profile" = "~/.bash_profile"
 ".gitconfig" = "~/.gitconfig"
