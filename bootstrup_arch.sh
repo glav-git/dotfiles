@@ -174,6 +174,8 @@ else
     GIT_SSH_COMMAND='ssh -o StrictHostKeyChecking=accept-new' git clone "git@github.com:glav-git/dotfiles.git" "$HOME/.dotfiles"
 fi
 
+[[ -f "$HOME/.dotfiles/.dotter/local.toml" ]] || echo 'packages = ["default"]' > "$HOME/.dotfiles/.dotter/local.toml"
+
 # TODO: figure out if we can somehow make a dotter backup config files
 # if they are present instead of simply removing them
 (cd "$HOME/.dotfiles" && dotter -f --noconfirm)
