@@ -226,7 +226,7 @@ sudo docker run --rm hello-world > /dev/null
 msg "docker: enabled & operational"
 
 # reload copyq to apply config and ensure it's server is running
-copyq exit || true; uwsm app -- copyq --start-server &
+copyq exit 2>/dev/null || true; uwsm app -- copyq --start-server &
 
 ###############################################################################
 # cleanup
