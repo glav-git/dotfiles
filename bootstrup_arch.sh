@@ -181,6 +181,7 @@ fi
 # TODO: figure out if we can somehow make a dotter backup config files
 # if they are present instead of simply removing them
 (cd "$HOME/.dotfiles" && dotter -f --noconfirm)
+command -v hyprctl && hyprctl reload || true
 
 mise up
 [[ -f "$HOME/.bash_mise_activate" ]] || mise activate > $HOME/.bash_mise_activate
