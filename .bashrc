@@ -1,7 +1,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export COWPATH="$HOME/.config/cowsay"
+export COWPATH="$HOME/Documents/cowsay"
 export DISPLAY=:0;
 export GOPATH=$HOME/go
 export EDITOR="nvim"
@@ -51,21 +51,23 @@ if ! shopt -oq posix; then
 fi
 # {{/if}}
 
-gender=$(echo '--lesbian
---gay
---bisexual
---transgender
---pansexual
---gender-queer
---mlm
---polysexual
---demiboy
---demigirl
---bigender
---abrosexual
---trigender' | shuf -n 1)
-saying=$(find $HOME/.config/cowsay/sayings -name '[^_]*.txt' | shuf -n 1)
-cat $saying | cowthink  -f sodomized-sheep -n | gay $gender
+if [[ -d "$COWPATH" ]]; then
+    gender=$(echo '--lesbian
+    --gay
+    --bisexual
+    --transgender
+    --pansexual
+    --gender-queer
+    --mlm
+    --polysexual
+    --demiboy
+    --demigirl
+    --bigender
+    --abrosexual
+    --trigender' | shuf -n 1)
+    saying=$(find "$COWPATH/sayings" -name '[^_]*.txt' | shuf -n 1)
+    cat $saying | cowthink -f sodomized-sheep -n | gay $gender
+fi
 
 if [ -d "~/.local/share/omarchy" ]; then
     # All the default Omarchy aliases and functions

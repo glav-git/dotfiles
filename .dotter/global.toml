@@ -17,7 +17,6 @@ depends = []
 ".gitconfig" = "~/.gitconfig"
 "copyq.conf" = "~/.config/copyq/copyq.conf"
 "kitty.conf" = "~/.config/kitty/kitty.conf"
-cowsay = "~/.config/cowsay"
 tmux = "~/.config/tmux"
 hypr = "~/.config/hypr"
 mise = "~/.config/mise"
