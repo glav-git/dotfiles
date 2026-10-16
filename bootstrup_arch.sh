@@ -160,7 +160,7 @@ PKGS_BASE=(
     docker docker-buildx docker-compose
     tmux nvim tree-sitter-cli obs-studio
     telegram-desktop brave-origin-bin copyq
-    ffmpeg vlc imagemagick
+    ffmpeg vlc imagemagick qbittorrent
 
     # AUR stuff
     megacmd-bin hyprqt6engine dotter-rs-bin
