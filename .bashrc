@@ -89,6 +89,7 @@ alias sshh='_a=( $(cat $HOME/.ssh/my_hosts | sed s/#.*$// | sed /^\s*$/d | fzf) 
 
 open() { xdg-open "$@" >/dev/null 2>&1 & }
 eval "$(starship init bash)"
+eval "$(mise activate bash)"
 
 function cd() {
     builtin cd "$@"
@@ -104,4 +105,3 @@ function cd() {
 
 [[ -f .venv/bin/activate ]] && . .venv/bin/activate
 [[ -f ~/.cargo/env ]] && . ~/.cargo/env
-[[ -f ~/.bash_mise_activate ]] && . ~/.bash_mise_activate

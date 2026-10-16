@@ -184,7 +184,6 @@ fi
 command -v hyprctl && hyprctl reload || true
 
 mise up
-[[ -f "$HOME/.bash_mise_activate" ]] || mise activate > $HOME/.bash_mise_activate
 for p in isort black gay yt-dlp; do
     command -v "$p" > /dev/null || mise x uv -- uv tool install "$p"
 done
