@@ -2,6 +2,7 @@
 
 hl.config({
 	input = {
+        touchpad = { natural_scroll = true },
 		-- sensitivity = -0.25,
 		accel_profile = "flat",
 		kb_layout = "us,ua,ru",
