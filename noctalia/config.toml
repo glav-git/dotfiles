@@ -19,8 +19,7 @@ enabled  = true
 shadow = false
 start = [ "workspaces"]
 center = [ "clock" ]
-end = [ "media", "spacer_1", "pencil", "mega", "tray", "notifications", "group:g1" ]
-# "network", "volume", "launcher", "session"
+end = [ "media", "spacer_1", "mega", "tray", "notifications", "group:g1", "battery" ]
 concave_edge_corners = true
 margin_edge = 0
 margin_ends = 0
@@ -38,7 +37,7 @@ background_opacity = 0.7
     id = "g1"
     members = [ "temp", "sysmon_2", "sysmon_3" ]
     opacity = 0
-    padding = 6.0
+    padding = 1.0
 
 [shell]
 lang = "en"
