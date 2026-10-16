@@ -96,7 +96,7 @@ function cd() {
 
     # Auto-activate virtual environment
     if [ -f .venv/bin/activate ]; then
-        source .venv/bin/activate
+        . .venv/bin/activate
     elif [ -n "$VIRTUAL_ENV" ]; then
         # Deactivate if we left the project directory
         deactivate 2>/dev/null || true
